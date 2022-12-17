@@ -103,3 +103,4 @@ z[1] <- 0 #Setting first element of z to 0
 Id <- diag(10)> Id <- 5*Id # one way, using the fact that Id is the identity
 Id[Id != 0] <- 5 # another way, using vector indexing of a matrix7
 
+# end
