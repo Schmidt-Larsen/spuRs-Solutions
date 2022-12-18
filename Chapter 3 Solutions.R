@@ -72,11 +72,17 @@ for (i in 1:n){
   hm = 
 }
 
+x <- c(1, 2, 3, 4, 5)
+for (i in x) {
+  h <- h * i
+}
+h <-h^(1/length(x))
+# NOT SURE THIS IS RIGHT
+
 # 7
 x <- 1:10 # test set
 
 # for loop
-out <- 0
 for (i in 1:length(x)){
   if (i%%3 == 0){
     y <- y+x[i]
@@ -87,6 +93,92 @@ y <- sum(x[-1][c(FALSE, FALSE, TRUE)])
 
 # 8
 
-
+# Answer clearly found by looking at the quad3.r function in spuRs
+# clear the workspace
+rm(list=ls())
+# input
+a2 <- 1
+a1 <- 4
+a0 <- 5
+# These first 3 if / if else statements returns the possibilities where roots can not be calculated
+if (a2 == 0 && a1 == 0 && a0 == 0) {
+  roots <- NA
+} else if (a2 == 0 && a1 == 0) {
+  roots <- NULL
+} else if (a2 == 0) {
+  roots <- -a0/a1
+} else {
+  # calculate the discriminant
+  discrim <- a1^2 - 4*a2*a0
+  # calculate the roots depending on the value of the discriminant
+  if (discrim > 0) {
+  roots <- c( (-a1 + sqrt(a1^2 - 4*a2*a0))/(2*a2),
+              (-a1 - sqrt(a1^2 - 4*a2*a0))/(2*a2) )
+} else {
+  if (discrim == 0) {
+    roots <- -a1/(2*a2)
+  } else {
+    roots <- NULL
+    }
+  }
+}
 
 # 9 
+
+# a
+# threexplus1array.r
+x <- 3
+for (i in length(x)) {
+  show(x)
+  if (x[i] %% 2 == 0) {
+    x[i+1] <- x[i]/2
+  } else {
+    x[i+1] <- 3*x[i] + 1
+  }
+} 
+show(x)
+plot(x, type="l") # IS THIS REALLY THE ONLY THING YOU HAVE TO DO?
+
+# b 
+# program spuRs/resources/scripts/predprey.r
+# Lotka-Volterra predator-prey equations
+br <- 0.04   # growth rate of rabbits
+dr <- 0.0005 # death rate of rabbits due to predation
+df <- 0.2    # death rate of foxes
+bf <- 0.1    # efficiency of turning predated rabbits into foxes 
+x <- 4000
+y <- 100
+while (x > 3900) {
+  cat("x =", x, " y =", y, "\n")
+  x.new <- (1+br)*x - dr*x*y
+  y.new <- (1-df)*y + bf*dr*x*y
+  x <- x.new
+  y <- y.new 
+}
+plot(x, y, type="l")
+
+
+# 10 
+
+
+
+# 11
+
+
+
+# 12
+
+
+
+
+# 13
+
+
+
+
+# 14 
+
+
+
+
+# 15
