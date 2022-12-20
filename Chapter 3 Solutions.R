@@ -148,37 +148,77 @@ df <- 0.2    # death rate of foxes
 bf <- 0.1    # efficiency of turning predated rabbits into foxes 
 x <- 4000
 y <- 100
+i= 1
 while (x > 3900) {
   cat("x =", x, " y =", y, "\n")
   x.new <- (1+br)*x - dr*x*y
   y.new <- (1-df)*y + bf*dr*x*y
-  x <- x.new
-  y <- y.new 
+  plot(x, y, type="l")
+  x[i+1] <- x.new
+  y[i+1] <- y.new 
+  i = i +1
 }
 plot(x, y, type="l")
-
+# DOES RUN SMOOTHLY YET
 
 # 10 
 
-
+x <- rnorm(n=100) # Draw random obs to test
+x.min <- x[1] #set initialy min
+for (i in 1:length(x)) {
+  if (x.min > x[i]) {
+    x.min <- x[i]
+    print(x.min) #print x.min to see if loop works
+  }
+}
 
 # 11
+x <- rnorm(n=100) #setting 2 random vectors 
+y <- rnorm(n=100)
 
-
+# HAVENT DONE YET
+# merge function from Rfast2 is good
 
 # 12
+
+x <- sum(ceiling(6*runif(2)))
+# use this: http://math.oxford.emory.edu/site/home/futurePages/rProjectCraps/
 
 
 
 
 # 13
 
-
-
+t <- seq(0,10, 0.01)
+x <- sqrt(t) * cos(2*pi*t)
+y <- 2*pi*t * sin(2*pi*t)
+plot(x,y,type="l")
 
 # 14 
 
-
-
+# program: spuRs/resources/scripts/threexplus1.r
+x <- 3
+for (i in 1:3) {
+  if (x %% 2 == 0) {
+    x <- x/2
+  } else {
+    x <- 3*x + 1
+  }
+}
+show(x)
 
 # 15
+
+N <- 100
+Toggle <- rep(0, N) # 0 toggle off, 1 toggle on
+for (i in 1:N) {
+  Select = seq(i, N, i) # selects the toggles to switch
+  Toggle_off <- Toggle[Select] == 0 #toggles to switch that are off
+  Toggle[Select][Toggle_off]   <- 1 #toggles being switched on
+  Toggle[Select][!Toggle_off]  <- 0 #toggles being swithced off
+}
+which(Toggle == 1)
+
+# Thanks to Leopoldo (I assume is the original coder) from Aarhus university BSS for the code to problem 15
+
+
